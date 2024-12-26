@@ -121,3 +121,163 @@ The Movie Lobby API is a complete RESTful API built with TypeScript, Express, an
 ## Error Handling
 
 The API includes error handling middleware that returns a `500` status code for internal server errors.
+
+
+
+
+# Movie Lobby API Documentation
+
+### Base URL
+`http://localhost:3000`
+
+## Authentication Endpoints
+
+### 1. Login User
+- **Endpoint:** `POST /login`
+- **Request Body:**
+  ```json
+  {
+    "username": "john_doe",
+    "password": "securepassword123"
+  }
+  ```
+- **Response:**
+  - **Success (200):**
+    ```json
+    {
+      "token": "your_jwt_token"
+    }
+    ```
+  - **Error (401):**
+    ```json
+    {
+      "message": "Invalid credentials"
+    }
+    ```
+
+## Movie Endpoints
+
+### 2. Get All Movies
+- **Endpoint:** `GET /movies`
+- **Response:**
+  - **Success (200):**
+    ```json
+    [
+      {
+        "_id": "676d2ca895679d2c94d911ac",
+        "title": "Inception",
+        "genre": "Science Fiction",
+        "rating": 8.8,
+        "streamingLink": "https://example.com/inception",
+        "createdAt": "2023-01-01T00:00:00.000Z",
+        "updatedAt": "2023-01-01T00:00:00.000Z"
+      }
+    ]
+    ```
+
+### 3. Search Movies
+- **Endpoint:** `GET /search?q=<search_query>`
+- **Response:**
+  - **Success (200):**
+    ```json
+    [
+      {
+        "_id": "676d2ca895679d2c94d911ac",
+        "title": "Inception",
+        "genre": "Science Fiction",
+        "rating": 8.8,
+        "streamingLink": "https://example.com/inception"
+      }
+    ]
+    ```
+  - **Error (400):**
+    ```json
+    {
+      "message": "Search query is required"
+    }
+    ```
+  - **Error (404):**
+    ```json
+    {
+      "message": "No Movie with '<search_query>' Title or Genre Exists."
+    }
+    ```
+
+### 4. Add Movie
+- **Endpoint:** `POST /movies`
+- **Request Body:**
+  ```json
+  {
+    "title": "Inception",
+    "genre": "Science Fiction",
+    "rating": 8.8,
+    "streamingLink": "https://example.com/inception"
+  }
+  ```
+- **Response:**
+  - **Success (201):**
+    ```json
+    {
+      "_id": "676d2ca895679d2c94d911ac",
+      "title": "Inception",
+      "genre": "Science Fiction",
+      "rating": 8.8,
+      "streamingLink": "https://example.com/inception",
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-01T00:00:00.000Z"
+    }
+    ```
+  - **Error (400):**
+    ```json
+    {
+      "message": "Movie already exists"
+    }
+    ```
+
+### 5. Update Movie
+- **Endpoint:** `PUT /movies/:id`
+- **Request Body:**
+  ```json
+  {
+    "title": "Updated Title",
+    "genre": "Updated Genre",
+    "rating": 9.0,
+    "streamingLink": "https://example.com/updated-inception"
+  }
+  ```
+- **Response:**
+  - **Success (200):**
+    ```json
+    {
+      "_id": "676d2ca895679d2c94d911ac",
+      "title": "Updated Title",
+      "genre": "Updated Genre",
+      "rating": 9.0,
+      "streamingLink": "https://example.com/updated-inception",
+      "createdAt": "2023-01-01T00:00:00.000Z",
+      "updatedAt": "2023-01-02T00:00:00.000Z"
+    }
+    ```
+  - **Error (404):**
+    ```json
+    {
+      "message": "Movie not found"
+    }
+    ```
+
+### 6. Delete Movie
+- **Endpoint:** `DELETE /movies/:id`
+- **Response:**
+  - **Success:**
+    ```json
+    { "message": "Movie Removed"}
+    ```
+  - **Error (404):**
+    ```json
+    {
+      "message": "Movie not found"
+    }
+    ```
+
+### The End
+
