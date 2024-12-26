@@ -121,11 +121,3 @@ The Movie Lobby API is a complete RESTful API built with TypeScript, Express, an
 ## Error Handling
 
 The API includes error handling middleware that returns a `500` status code for internal server errors.
-
-
-This project is licensed under the [MIT License](LICENSE).
-
-## Acknowledgments
-
-Thanks to the contributors and the open-source community for their support and resources.
-
